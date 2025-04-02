@@ -44,6 +44,8 @@ impl Diagnostic for FastraceDiagnostic {
         if let Some(span) = fastrace::collector::SpanContext::current_local_parent() {
             let trace_id = format!("{:016x}", span.trace_id.0);
             visitor.visit("trace_id".into(), trace_id.into());
+            let span_id = format!("{:08x}", span.span_id.0);
+            visitor.visit("span_id".into(), span_id.into());
         }
     }
 }
